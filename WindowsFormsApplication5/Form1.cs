@@ -166,6 +166,9 @@ namespace WindowsFormsApplication5
             return new KeyStateInfo(key, pressed, toggled);
         }
 
+
+
+
         private static int High(int keyState)
         {
             if (keyState > 0)
