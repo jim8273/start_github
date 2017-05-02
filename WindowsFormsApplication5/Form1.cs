@@ -14,8 +14,12 @@ using System.Runtime.InteropServices;
 
 namespace WindowsFormsApplication5
 {
+
     public partial class Form1 : Form
     {
+
+        public static string str_GetProcess = "";
+
         public Form1()
         {
             InitializeComponent();
@@ -48,6 +52,7 @@ namespace WindowsFormsApplication5
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern int CallNextHookEx(int idHook, int nCode, IntPtr wParam, IntPtr lParam);
 
+        /*--- 開啟/關閉全域鍵盤偵測 ---*/
         private void button1_Click(object sender, EventArgs e)
         {
             if (m_HookHandle == 0)
@@ -85,7 +90,7 @@ namespace WindowsFormsApplication5
             }
         }
 
-
+        /*--- 全域鍵盤事件 ---*/
         public static int KeyboardHookProc(int nCode, IntPtr wParam, IntPtr lParam)
         {
             
@@ -120,7 +125,7 @@ namespace WindowsFormsApplication5
             }*/
             if (f8Key.IsPressed)
             {
-                Process[] processes = Process.GetProcessesByName("GTA5");
+                Process[] processes = Process.GetProcessesByName(str_GetProcess);
 
                 foreach (Process p in processes)
                 {
@@ -135,9 +140,56 @@ namespace WindowsFormsApplication5
             return CallNextHookEx(m_HookHandle, nCode, wParam, lParam);
         }
 
+
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        /*--- 列出程式清單 ---*/
+        private void btn_List_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            // 列出系統中所有的程序
+            Process[] processes = Process.GetProcesses();
+            foreach (Process p in processes)
+            {
+                // 因為使用 Idle 的 StartTime 會造成錯誤，因此先排除
+                if (!p.ProcessName.Equals("Idle"))
+                {
+                    // 顯示程序的名稱及啟動時間
+                    listBox1.Items.Add(p.ProcessName);
+                    //listBox1.Items.Add(string.Format("{0} - {1}", p.ProcessName, p.StartTime.ToString("yyyy/MM/dd hh:mm:ss")));
+                }
+            }
+            listBox1.Sorted = true;
+        }
+
+        /*--- 選擇程式項目 ---*/
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //MessageBox.Show((string)listBox1.SelectedItem);
+            text_Choose.Text = (string)listBox1.SelectedItem;
+        }
+
+        /*--- 鎖定程式 ---*/
+        private void btn_Lock_Click(object sender, EventArgs e)
+        {
+            if(text_Choose.Enabled == true)
+            {
+                text_Choose.Enabled = false;
+                listBox1.Enabled = false;
+                btn_Lock.Text = "鎖定中(點擊解鎖)";
+                str_GetProcess = text_Choose.Text;
+            }
+            else
+            {
+                text_Choose.Enabled = true;
+                listBox1.Enabled = true;
+                btn_Lock.Text = "開啟中(點擊鎖定)";
+                str_GetProcess = "";
+            }
+            
         }
     }
 
