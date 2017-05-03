@@ -55,9 +55,9 @@
             this.label1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(23, 327);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 19);
+            this.label1.Size = new System.Drawing.Size(180, 19);
             this.label1.TabIndex = 1;
-            this.label1.Text = "F8 : 關閉GTA5";
+            this.label1.Text = "F8 : 關閉所選取程式";
             // 
             // label2
             // 
@@ -86,9 +86,9 @@
             this.label3.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(23, 362);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(243, 19);
+            this.label3.Size = new System.Drawing.Size(342, 19);
             this.label3.TabIndex = 4;
-            this.label3.Text = "註 : 需先打開遊戲,再開工具";
+            this.label3.Text = "註 : 顯示清單->選程式->鎖定->開始使用";
             // 
             // listBox1
             // 
