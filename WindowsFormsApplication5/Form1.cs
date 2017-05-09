@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading;
 
-    /* 參考網址 : https://dotblogs.com.tw/huanlin/2008/04/23/3320 */
+/* 參考網址 : https://dotblogs.com.tw/huanlin/2008/04/23/3320 */
 
 namespace WindowsFormsApplication5
 {
 
     public partial class Form1 : Form
     {
-
         public static string str_GetProcess = "";
 
         public Form1()
@@ -74,6 +74,11 @@ namespace WindowsFormsApplication5
                 button1.Text = "解除鍵盤熱鍵";
                 Status_label.Text = "作用中";
                 Status_label.ForeColor = Color.Green;
+
+                str_GetProcess = text_Choose.Text;
+                text_Choose.Enabled = false;
+                listBox1.Enabled = false;
+
             }
             else
             {
@@ -87,6 +92,11 @@ namespace WindowsFormsApplication5
                 button1.Text = "設置鍵盤熱鍵";
                 Status_label.Text = "待命";
                 Status_label.ForeColor = Color.Red;
+
+                str_GetProcess = "";
+                text_Choose.Enabled = true;
+                listBox1.Enabled = true;
+
             }
         }
 
@@ -125,26 +135,23 @@ namespace WindowsFormsApplication5
             }*/
             if (f8Key.IsPressed)
             {
-                Process[] processes = Process.GetProcessesByName(str_GetProcess);
+                // 列出系統中所有的程序
+                Process[] processes = Process.GetProcesses();
+                //delay 20ms
+                Thread.Sleep(20);
+                processes = Process.GetProcessesByName(str_GetProcess);
 
                 foreach (Process p in processes)
-                {
-                    // 關閉目前程序前先等待 100 毫秒
-                    //p.WaitForExit(100);
-                    //p.CloseMainWindow();
-                    p.Kill();
-                    //p.Close();
+                {                    
+                    p.Kill();                    
                 }
             }
 
             return CallNextHookEx(m_HookHandle, nCode, wParam, lParam);
         }
 
-
         private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
+        {    }
 
         /*--- 列出程式清單 ---*/
         private void btn_List_Click(object sender, EventArgs e)
@@ -170,27 +177,12 @@ namespace WindowsFormsApplication5
         {
             //MessageBox.Show((string)listBox1.SelectedItem);
             text_Choose.Text = (string)listBox1.SelectedItem;
+            str_GetProcess = text_Choose.Text;
         }
 
-        /*--- 鎖定程式 ---*/
+        /*---  ---*/
         private void btn_Lock_Click(object sender, EventArgs e)
-        {
-            if(text_Choose.Enabled == true)
-            {
-                text_Choose.Enabled = false;
-                listBox1.Enabled = false;
-                btn_Lock.Text = "鎖定中(點擊解鎖)";
-                str_GetProcess = text_Choose.Text;
-            }
-            else
-            {
-                text_Choose.Enabled = true;
-                listBox1.Enabled = true;
-                btn_Lock.Text = "開啟中(點擊鎖定)";
-                str_GetProcess = "";
-            }
-            
-        }
+        {    }
     }
 
     public class KeyboardInfo
@@ -217,9 +209,6 @@ namespace WindowsFormsApplication5
 
             return new KeyStateInfo(key, pressed, toggled);
         }
-
-
-
 
         private static int High(int keyState)
         {
@@ -263,19 +252,13 @@ namespace WindowsFormsApplication5
         }
 
         public Keys Key
-        {
-            get { return m_Key; }
-        }
+        {  get { return m_Key; }  }
 
         public bool IsPressed
-        {
-            get { return m_IsPressed; }
-        }
+        {  get { return m_IsPressed; }  }
 
         public bool IsToggled
-        {
-            get { return m_IsToggled; }
-        }
+        {  get { return m_IsToggled; }  }
     }
 
 

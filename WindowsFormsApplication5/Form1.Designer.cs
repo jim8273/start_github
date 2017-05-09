@@ -35,13 +35,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.text_Choose = new System.Windows.Forms.TextBox();
-            this.btn_Lock = new System.Windows.Forms.Button();
             this.btn_List = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(276, 117);
+            this.button1.Location = new System.Drawing.Point(276, 59);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 45);
             this.button1.TabIndex = 0;
@@ -63,7 +62,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(276, 85);
+            this.label2.Location = new System.Drawing.Point(276, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 19);
             this.label2.TabIndex = 2;
@@ -72,10 +71,10 @@
             // Status_label
             // 
             this.Status_label.AutoSize = true;
-            this.Status_label.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Status_label.Location = new System.Drawing.Point(354, 85);
+            this.Status_label.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Status_label.Location = new System.Drawing.Point(351, 107);
             this.Status_label.Name = "Status_label";
-            this.Status_label.Size = new System.Drawing.Size(27, 19);
+            this.Status_label.Size = new System.Drawing.Size(31, 22);
             this.Status_label.TabIndex = 3;
             this.Status_label.Text = "無";
             this.Status_label.Click += new System.EventHandler(this.label3_Click);
@@ -86,9 +85,9 @@
             this.label3.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(23, 362);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(342, 19);
+            this.label3.Size = new System.Drawing.Size(288, 19);
             this.label3.TabIndex = 4;
-            this.label3.Text = "註 : 顯示清單->選程式->鎖定->開始使用";
+            this.label3.Text = "註 : 顯示清單->選程式->開始使用";
             // 
             // listBox1
             // 
@@ -108,16 +107,6 @@
             this.text_Choose.Size = new System.Drawing.Size(195, 22);
             this.text_Choose.TabIndex = 6;
             // 
-            // btn_Lock
-            // 
-            this.btn_Lock.Location = new System.Drawing.Point(276, 59);
-            this.btn_Lock.Name = "btn_Lock";
-            this.btn_Lock.Size = new System.Drawing.Size(195, 23);
-            this.btn_Lock.TabIndex = 7;
-            this.btn_Lock.Text = "鎖定";
-            this.btn_Lock.UseVisualStyleBackColor = true;
-            this.btn_Lock.Click += new System.EventHandler(this.btn_Lock_Click);
-            // 
             // btn_List
             // 
             this.btn_List.Location = new System.Drawing.Point(27, 292);
@@ -134,7 +123,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(592, 400);
             this.Controls.Add(this.btn_List);
-            this.Controls.Add(this.btn_Lock);
             this.Controls.Add(this.text_Choose);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label3);
@@ -159,7 +147,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TextBox text_Choose;
-        private System.Windows.Forms.Button btn_Lock;
         private System.Windows.Forms.Button btn_List;
     }
 }
